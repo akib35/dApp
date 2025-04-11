@@ -1,0 +1,19 @@
+# Tasks for the DApp Project
+
+## Backend
+- [X] Implement additional API endpoints for wallet and transaction management.
+- [X] Improve error handling in `/transactions` POST endpoint.
+- [ ] Add unit tests for `Database` and `Transaction` models.
+
+
+## Frontend
+- [X] Enhance the `Navbar` component to display wallet connection status dynamically.
+- [ ] Add form validation for the `CreateTransactionPage`.
+- [ ] Implement pagination for the `HomePage` transaction list.
+- [ ] Improve UI/UX for the `TransactionDetailPage`.
+
+## General
+- [ ] Write integration tests for apis.
+- [ ] Update documentation in the `README.md` file.
+- [ ] Refactor code to reduce technical debt (see `tech-debt.txt`).
+- [ ] Ensure compatibility with mobile devices.

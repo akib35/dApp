@@ -1,0 +1,13 @@
+Choosen Technological Stack
+Frontend: TypeScript
+Backend: Python Flask
+
+Key items:
+- Used Bootstrap, TypeScript compiler without fixed config.
+- Lack of consistent linting and formatting rules for TypeScript.
+- No automated testing framework integrated for frontend or backend.
+- Missing documentation for API endpoints.
+- No databases in backend.
+- Limited error handling in backend routes.
+
+

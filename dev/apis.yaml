@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: Transactions API
+  version: 1.0.0
+
+Servers:
+  - url: http://localhost:5000
+    description: Local server
+
+paths:
+  /api/transactions:
+    get:
+      summary: Get all transactions
+      responses:
+        '200':
+          description: A list of transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+    post:
+      summary: Create a new transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionInput'
+      responses:
+        '201':
+          description: Transaction created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+  /api/transactions/{transaction_id}:
+    get:
+      summary: Get a transaction by ID
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '404':
+          description: Transaction not found
+  /api/wallet/connect:
+    post:
+      summary: Connect a wallet
+      responses:
+        '200':
+          description: Wallet connected successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  balance:
+                    type: string
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+        from:
+          type: string
+        to:
+          type: string
+        value:
+          type: number
+    TransactionInput:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string
+        value:
+          type: number
+      required:
+        - from
+        - to
+        - value
+
