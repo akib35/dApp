@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "ES6", // Specify ECMAScript target version
+        "module": "CommonJS", // Specify module code generation
+        "strict": true, // Enable all strict type-checking options
+        "esModuleInterop": true, // Enable compatibility with CommonJS modules
+        "skipLibCheck": true, // Skip type checking of declaration files
+        "forceConsistentCasingInFileNames": true // Ensure consistent casing in imports
+    },
+    "include": ["src"], // Specify files to include in the compilation
+    "exclude": ["node_modules", "dist"] // Specify files to exclude from the compilation
+}
