@@ -60,3 +60,37 @@ class Database:
         transactions.append(tx_data)
         self._write_data(transactions)
         return tx_data
+
+
+import unittest
+from app.models import Transaction, Database
+from pathlib import Path
+import json
+
+
+class TestModels(unittest.TestCase):
+    def setUp(self):
+        self.temp_file = Path("temp_transactions.json")
+        self.db = Database(self.temp_file)
+
+    def tearDown(self):
+        if self.temp_file.exists():
+            self.temp_file.unlink()
+
+    def test_transaction_creation(self):
+        tx = Transaction("0x123", "0x456", "10")
+        self.assertEqual(tx.from_address, "0x123")
+        self.assertEqual(tx.to_address, "0x456")
+        self.assertEqual(tx.value, "10 ETH")
+        self.assertEqual(tx.status, "pending")
+
+    def test_database_operations(self):
+        tx = Transaction("0x123", "0x456", "10")
+        self.db.add_transaction(tx)
+        transactions = self.db.get_all_transactions()
+        self.assertEqual(len(transactions), 1)
+        self.assertEqual(transactions[0]["from"], "0x123")
+
+
+if __name__ == "__main__":
+    unittest.main()

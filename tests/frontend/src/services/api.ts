@@ -63,3 +63,30 @@ export const connectWallet = async (): Promise<Wallet> => {
     }, 1000);
   });
 };
+
+describe('API Service', () => {
+    it('should fetch all transactions', async () => {
+        const transactions = await fetchTransactions();
+        expect(transactions).toBeInstanceOf(Array);
+        expect(transactions.length).toBeGreaterThan(0);
+    });
+
+    it('should fetch a single transaction by ID', async () => {
+        const transaction = await fetchTransaction(1);
+        expect(transaction).toBeDefined();
+        expect(transaction?.id).toBe(1);
+    });
+
+    it('should create a new transaction', async () => {
+        const newTransaction = await createTransaction({ from: '0x123', to: '0x456', value: '1 ETH' });
+        expect(newTransaction).toHaveProperty('id');
+        expect(newTransaction).toHaveProperty('hash');
+        expect(newTransaction.value).toBe('1 ETH');
+    });
+
+    it('should connect a wallet', async () => {
+        const wallet = await connectWallet();
+        expect(wallet).toHaveProperty('address');
+        expect(wallet).toHaveProperty('balance');
+    });
+});
